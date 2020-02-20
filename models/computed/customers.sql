@@ -28,7 +28,7 @@ final as (
         customers.last_name,
         customer_orders.first_order_date,
         customer_orders.most_recent_order_date,
-        customer_orders.amount as lifetime_value,
+        coalesce(customer_orders.amount, 0) as lifetime_value,
         coalesce(customer_orders.number_of_orders, 0) as number_of_orders
     from 
         customers
