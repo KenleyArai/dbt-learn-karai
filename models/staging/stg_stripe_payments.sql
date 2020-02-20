@@ -1,3 +1,7 @@
+with source as (
+    select * from {{source('stripe', 'payment')}}
+)
+
 select 
     id as stripe_payment_id,
     "orderID" as order_id,
@@ -5,4 +9,4 @@ select
     amount as amount,
     created as created
 from 
-    raw.stripe.payment
+    source
